@@ -6,7 +6,11 @@ import retrofit2.Response
 
 
 class Repository {
-    suspend fun getPosts() : List<PostsItem>{
-        return RetrofitInstance.apiService.getPosts()
+    suspend fun getPost() : List<PostItem> {
+	return try {
+		RetrofitInstance.apiService.getPosts()
+		} catch(exception : Exception) {
+			exception.printStake()
+	    }
     }
 }
